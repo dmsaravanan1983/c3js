@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Basic Angular Learning</title>
+  <link href="css/c3.min.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+  <div  ng-app="graphApp">
+    <article ng-controller="GraphCtrl" ng-init="showGraph()">
+      <div id="chart"></div>
+    </article>
+
+    <c3-donut data="data"></c3-donut>
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <script type="text/javascript" src="js/d3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/c3.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/c3-angular.min.js"></script>
+
+<script>
+var graphApp = angular.module('graphApp', []);
+graphApp.controller('GraphCtrl', function ($scope) {
+    $scope.chart = null;
+    $scope.data = {
+      columns: [
+        ['data1', 30, 200, 100, 400, 150, 250],
+        ['data2', 50, 20, 10, 40, 15, 25]
+      ]
+   }
+
+    $scope.showGraph = function() {
+        $scope.chart = c3.generate({
+                bindto: '#chart',
+                data: $scope.data
+            });
+    }
+});
+
+</script>
+</body>
+</html>
